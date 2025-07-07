@@ -1,0 +1,32 @@
+<% layout('layout') %>
+<h2 class="mb-4">Dashboard</h2>
+<h4>Upload File</h4>
+<form action="/upload" method="POST" enctype="multipart/form-data" class="mb-4">
+  <div class="input-group">
+    <input type="file" name="file" class="form-control" required>
+    <button class="btn btn-success" type="submit">Upload</button>
+  </div>
+</form>
+<hr>
+<h4>Your Files</h4>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">File</th>
+      <th scope="col">Uploaded</th>
+      <th scope="col">Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if (files.length === 0) { %>
+      <tr><td colspan="3">No files uploaded yet.</td></tr>
+    <% } %>
+    <% files.forEach(f => { %>
+      <tr>
+        <td><%= f.original_name %></td>
+        <td><%= new Date(f.uploaded_at).toLocaleString() %></td>
+        <td><a href="/file/<%= f.id %>" target="_blank">Open</a></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
