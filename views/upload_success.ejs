@@ -1,0 +1,8 @@
+<% layout('layout') %>
+<div class="alert alert-success">File uploaded successfully!</div>
+<p>Share this link with anyone:</p>
+<div class="input-group mb-3">
+  <input type="text" class="form-control" value="<%= link %>" readonly>
+  <button class="btn btn-outline-secondary" type="button" onclick="navigator.clipboard.writeText('<%= link %>')">Copy</button>
+</div>
+<a href="/dashboard" class="btn btn-link">Back to Dashboard</a>
